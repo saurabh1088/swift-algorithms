@@ -29,11 +29,26 @@ final class BinarySearchTests: XCTestCase {
         let index = BinarySearch.searchFor(value: 8, in: array)
         XCTAssertEqual(7, index)
     }
+    
+    func test_binarySearch_fail() {
+        let array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+        let index = BinarySearch.searchFor(value: 0, in: array)
+        XCTAssertNil(index)
+    }
+    
+    func test_binarySearch_hugeDataSet() {
+        let arraySize = 10000
+        let array = (0..<arraySize).map { $0 }
+        let index = BinarySearch.searchFor(value: 999, in: array)
+        XCTAssertEqual(999, index)
+    }
 
     func testPerformanceExample() throws {
         // This is an example of a performance test case.
         self.measure {
-            // Put the code you want to measure the time of here.
+            let arraySize = 10000
+            let array = (0..<arraySize).map { $0 }
+            let index = BinarySearch.searchFor(value: 999, in: array)
         }
     }
 
