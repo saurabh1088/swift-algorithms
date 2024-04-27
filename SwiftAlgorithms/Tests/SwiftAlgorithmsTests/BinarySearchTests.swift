@@ -10,14 +10,6 @@ import XCTest
 
 final class BinarySearchTests: XCTestCase {
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
     func test_binarySearch_success_1() {
         let array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
         let index = BinarySearch.searchFor(value: 2, in: array)
@@ -42,13 +34,31 @@ final class BinarySearchTests: XCTestCase {
         let index = BinarySearch.searchFor(value: 999, in: array)
         XCTAssertEqual(999, index)
     }
+    
+    func test_binarySearchRecursive_success_1() {
+        let array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+        let index = BinarySearch.searchRecursivelyFor(value: 1, in: array)
+        XCTAssertEqual(0, index)
+    }
+    
+    func test_binarySearchRecursive_success_2() {
+        let array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+        let index = BinarySearch.searchRecursivelyFor(value: 9, in: array)
+        XCTAssertEqual(8, index)
+    }
+    
+    func test_binarySearchRecursive_fail() {
+        let array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+        let index = BinarySearch.searchRecursivelyFor(value: 0, in: array)
+        XCTAssertNil(index)
+    }
 
     func testPerformanceExample() throws {
         // This is an example of a performance test case.
         self.measure {
             let arraySize = 10000
             let array = (0..<arraySize).map { $0 }
-            let index = BinarySearch.searchFor(value: 999, in: array)
+            _ = BinarySearch.searchFor(value: 999, in: array)
         }
     }
 
