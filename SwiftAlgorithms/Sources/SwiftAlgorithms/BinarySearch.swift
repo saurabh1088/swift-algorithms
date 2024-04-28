@@ -9,7 +9,7 @@ import Foundation
 
 public struct BinarySearch {
     
-    public static func searchFor(value: Int, in array: [Int]) -> Int? {
+    public static func searchFor<T: Comparable>(value: T, in array: [T]) -> Int? {
         var startIndex = array.startIndex
         var endIndex = array.endIndex
         
@@ -26,12 +26,16 @@ public struct BinarySearch {
         return nil
     }
     
-    public static func searchRecursivelyFor(value: Int, in array: [Int]) -> Int? {
+    public static func searchRecursivelyFor<T: Comparable>(value: T, in array: [T]) -> Int? {
         let range = array.startIndex ..< array.endIndex
         return searchRecursivelyFor(value: value, in: array, range: range)
     }
-    
-    private static func searchRecursivelyFor(value: Int, in array: [Int], range: Range<Int>) -> Int? {
+}
+
+// MARK: -----------------------------------------------------------------------
+// MARK: Extension private members
+extension BinarySearch {
+    private static func searchRecursivelyFor<T: Comparable>(value: T, in array: [T], range: Range<Int>) -> Int? {
         var startIndex = range.lowerBound
         var endIndex = range.upperBound
         
